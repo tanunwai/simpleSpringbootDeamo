@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>顯示會員列表</title>
+    <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="contentContainer">
+    <fieldset>
+        <legend>會員列表</legend>
+        <div><a class="btn btn-primary" href="create" role="button">新增會員</a></div>
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>MemberId</th>
+                    <th>UserName</th>
+                    <th>Password</th>
+                    <th>RealName</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Sex</th>
+                    <th>Birthday</th>
+                    <th>Address</th>
+                    <th>Management</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="members : ${membersList}">
+                    <th scope="row" th:text="${members.memberid}"></th>
+                    <td th:text="${members.username}"></td>
+                    <td th:text="${members.password}"></td>
+                    <td th:text="${members.realname}"></td>
+                    <td th:text="${members.email}"></td>
+                    <td th:text="${members.phone}"></td>
+                    <td th:text="${members.sex}"></td>
+                    <td th:text="${members.birthday}"></td>
+                    <td th:text="${members.address}"></td>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{/members/update/{userId}(userId=${members.memberid})}">編輯</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-danger" th:href="@{/members/delete/{userId}(userId=${members.memberid})}">刪除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+</body>
+</html>

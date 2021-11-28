@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>會員管理</title>
+    <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="contentContainer">
+    <fieldset>
+        <legend>會員新建</legend>
+        <form method="post" th:action="@{/members/{action}(action=${action})}" class="form-horizontal">
+            <input type="hidden" name="memberid" th:value="${user.memberid}"/>
+            <!-- 會員帳號 -->
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">帳號</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="username" name="username" th:value="${user.username}" th:field="*{user.username}"/>
+                </div>
+                <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}">帳號有錯</label>
+            </div>
+            <!-- 會員密碼 -->
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">密碼</label>
+                <div class="col-xs-4">
+                    <input type="password" class="form-control" id="password" name="password" th:value="${user.password}" th:field="*{user.password}"/>
+                </div>
+                <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}">密碼有誤</label>
+            </div>
+            <!-- 會員實名 -->
+            <div class="form-group">
+                <label for="realname" class="col-sm-2 control-label">真實名稱</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="realname" name="realname" th:value="${user.realname}" th:field="*{user.realname}"/>
+                </div>
+                <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.realname')}" th:errors="*{user.realname}">真實名稱有錯</label>
+            </div>
+            <!-- 會員郵件 -->
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">E-Mail</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="email" name="email" th:value="${user.email}" th:field="*{user.email}"/>
+                </div>
+                <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}">mail有誤</label>
+            </div>
+            <!-- 聯系電話 -->
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">聯系電話</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="phone" name="phone" th:value="${user.phone}" th:field="*{user.phone}"/>
+                </div>
+                <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.phone')}" th:errors="*{user.phone}">聯系電話有錯</label>
+            </div>
+            <!-- 會員姓別 -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="sex">Gender</label>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="Female" name="Female" class="custom-control-input" value="Female" th:field="*{user.sex}">
+                    <label class="custom-control-label" for="Female">Female</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="Man" name="Man" class="custom-control-input" value="Man" th:field="*{user.sex}">
+                    <label class="custom-control-label" for="Man">Man</label>
+                </div>
+            </div>
+            <!-- 生日 -->
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">生日</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="birthday" name="birthday" th:value="${user.birthday}" th:field="*{user.birthday}"/>
+                </div>
+                <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.birthday')}" th:errors="*{user.birthday}">生日欄有誤</label>
+            </div>
+            <!-- 聯絡住址 -->
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">聯絡住址</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="address" name="address" th:value="${user.address}" th:field="*{user.address}"/>
+                </div>
+                <label class="col-sm-2 control-label text-danger" th:if="${#fields.hasErrors('user.address')}" th:errors="*{user.address}">住址欄有誤</label>
+            </div>
+            <!-- Button send -->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input class="btn btn-primary" type="submit" value="送出"/>&nbsp;&nbsp;
+                    <input class="btn btn-success" type="button" value="返回" onclick="history.back()"/>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>
+<script>
+    document.getElementById("Female").setAttribute("checked","checked")
+</script>
+</body>
+</html>
